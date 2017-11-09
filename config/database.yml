@@ -10,3 +10,9 @@ development: &default
 test:
   <<: *default
   database: pingegram_test
+
+production:
+  <<: *default
+  database: pingegram_production
+  username: pingegram
+  password: <%= ENV['PINGEGRAM_DATABASE_PASSWORD'] %>
