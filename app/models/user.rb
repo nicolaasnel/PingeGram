@@ -11,8 +11,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :chat_services
 
   def display_name
-    name = [first_name, last_name].join(' ').strip
-    name = email unless name.present?
-    name
+    full_name.present? ? full_name : email
+  end
+
+  def full_name
+    [first_name, last_name].join(' ').strip
   end
 end
