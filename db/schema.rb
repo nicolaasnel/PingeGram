@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20171110063538) do
 
   create_table "services", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "name"
-    t.integer  "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "service_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "telegram_chats", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
