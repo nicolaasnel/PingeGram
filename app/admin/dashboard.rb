@@ -19,15 +19,19 @@ ActiveAdmin.register_page "Dashboard" do
             thead do
               tr do
                 td content_tag(:strong, 'Name')
-                td content_tag(:strong, 'Services')
+                td content_tag(:strong, 'Service')
+                td content_tag(:strong, 'New Message Endpoint')
                 td
               end
               current_user.telegram_chats.each do |chat|
-                tr do
-                  td chat.name
-                  td chat.services.count
-                  td do
-                    link_to 'View', telegram_chat_path(chat), class: 'button'
+                chat.services.each do |service|
+                  tr do
+                    td chat.name
+                    td service.name
+                    td api_v1_telegram_chat_service_message_url(chat, service)
+                    td do
+                      link_to 'View', telegram_chat_path(chat), class: 'button'
+                    end
                   end
                 end
               end
