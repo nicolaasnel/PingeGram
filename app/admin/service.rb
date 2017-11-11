@@ -1,10 +1,28 @@
 ActiveAdmin.register Service do
-  permit_params :name, :service_type
+  permit_params :name, :type
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :type
+      row :created_at
+      row :updated_at
+    end
+  end
+
+  index do
+    column :id
+    column :name
+    column :type
+    column :created_at
+    column :updated_at
+  end
 
   form do |f|
     f.inputs do
       f.input :name
-      f.input :service_type, collection: Service.service_types.map { |k,v| [k.humanize, k] }
+      f.input :type, collection: Service.types.values
     end
     f.actions
   end
