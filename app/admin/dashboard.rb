@@ -24,11 +24,11 @@ ActiveAdmin.register_page "Dashboard" do
                 td
               end
               current_user.telegram_chats.each do |chat|
-                chat.services.each do |service|
+                chat.chat_services.each do |chat_service|
                   tr do
                     td chat.name
-                    td service.name
-                    td api_v1_telegram_chat_service_message_url(chat, service)
+                    td chat_service.service.name
+                    td api_v1_chat_service_message_url(chat_service)
                     td do
                       link_to 'View', telegram_chat_path(chat), class: 'button'
                     end
@@ -37,6 +37,34 @@ ActiveAdmin.register_page "Dashboard" do
               end
               tr do
                 td link_to 'New Chat', new_telegram_chat_path, class: 'button'
+              end
+            end
+          end
+        end
+        panel "Messages" do
+          table do
+            thead do
+              tr do
+                td content_tag(:strong, 'Chat')
+                td content_tag(:strong, 'Service')
+                td content_tag(:strong, 'Date')
+                td content_tag(:strong, 'Message')
+                td
+              end
+              current_user.telegram_chats.each do |chat|
+                chat.chat_services.each do |chat_service|
+                  chat_service.messages.order(created_at: :desc).limit(10).each do |message|
+                    tr do
+                      td chat.name
+                      td chat_service.service.name
+                      td message.created_at
+                      td message.text
+                      td do
+                        link_to 'View', message_path(message), class: 'button'
+                      end
+                    end
+                  end
+                end
               end
             end
           end
