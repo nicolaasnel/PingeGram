@@ -1,0 +1,2 @@
+class Pingdom < Service
+end
