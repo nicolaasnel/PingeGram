@@ -5,7 +5,7 @@ class Api::V1::ChatServices::MessagesController < Api::V1::BaseController
   attr_accessor :chat_service
   def create
     Message.create(text: message, incoming: params.permit!.to_h, chat_service: chat_service)
-    # send_message
+    send_message
     head :no_content
   end
 
