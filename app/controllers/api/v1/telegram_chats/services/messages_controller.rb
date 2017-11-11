@@ -1,5 +1,5 @@
 class Api::V1::TelegramChats::Services::MessagesController < Api::V1::BaseController
-  before_action :authenticate_api, :assign_variables
+  before_action :assign_variables
   skip_before_filter :verify_authenticity_token, only: :create
 
   attr_accessor :chat, :service
