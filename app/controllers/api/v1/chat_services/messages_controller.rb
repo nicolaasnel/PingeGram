@@ -3,13 +3,22 @@ class Api::V1::ChatServices::MessagesController < Api::V1::BaseController
   skip_before_filter :verify_authenticity_token, only: :create
 
   attr_accessor :chat_service
+
   def create
-    Message.create(text: message, incoming: params.permit!.to_h, chat_service: chat_service)
-    send_message
-    head :no_content
+    publish
+  end
+
+  def show
+    publish
   end
 
   private
+
+    def publish
+      Message.create(text: message, incoming: params.permit!.to_h, chat_service: chat_service)
+      send_message
+      head :no_content
+    end
 
     def send_message
       Telegram.new.send(chat_service, message)

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :chat_services, only: [] do
-        resource :message, only: :create, module: :chat_services
+        resource :message, only: [:create, :show], module: :chat_services
       end
     end
   end
