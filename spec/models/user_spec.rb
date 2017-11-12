@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:telegram_chats) }
   it { should have_many(:chat_services).through(:telegram_chats) }
   it { should have_many(:services).through(:chat_services) }
+  it { should have_many(:messages).through(:chat_services) }
 
   describe '#display_name' do
     context 'with a blank name' do

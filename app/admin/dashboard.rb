@@ -51,18 +51,14 @@ ActiveAdmin.register_page "Dashboard" do
                 td content_tag(:strong, 'Message')
                 td
               end
-              current_user.telegram_chats.each do |chat|
-                chat.chat_services.each do |chat_service|
-                  chat_service.messages.order(created_at: :desc).limit(10).each do |message|
-                    tr do
-                      td chat.name
-                      td chat_service.service.name
-                      td message.created_at
-                      td message.text
-                      td do
-                        link_to 'View', message_path(message), class: 'button'
-                      end
-                    end
+              current_user.messages.order(created_at: :desc).limit(10).each do |message|
+                tr do
+                  td message.chat_service.telegram_chat.name
+                  td message.chat_service.service.name
+                  td message.created_at
+                  td message.text
+                  td do
+                    link_to 'View', message_path(message), class: 'button'
                   end
                 end
               end

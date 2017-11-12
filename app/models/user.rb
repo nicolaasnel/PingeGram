@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :telegram_chats
   has_many :chat_services, through: :telegram_chats
   has_many :services, through: :chat_services
+  has_many :messages, through: :chat_services
 
   accepts_nested_attributes_for :chat_services
 
