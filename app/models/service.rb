@@ -4,6 +4,7 @@ class Service < ApplicationRecord
   # has_many :users, through: :telegram_chats
 
   enum types: {
-    pingdom: 'Pingdom'
+    pingdom: 'Pingdom',
+    synology: 'Synology'
   }
 end
