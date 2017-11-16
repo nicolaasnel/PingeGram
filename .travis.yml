@@ -11,8 +11,8 @@ services:
 
 addons:
   postgresql: '9.4'
-  # code_climate:
-  #   repo_token: d7ec66695ffe27eab60a4009ad71ee97c99fed36e66470e7534076b9af4410e9
+  code_climate:
+    repo_token: f100b0361948e77048cb6cd93dd3431a9f08e37f21815ee3738cd9380d6a54f2
 
 before_script:
   - cp config/database.yml.travis config/database.yml
@@ -23,4 +23,4 @@ script:
   - bin/rake
 
 after_success:
-  # - bundle exec codeclimate-test-reporter
+  - bundle exec codeclimate-test-reporter
