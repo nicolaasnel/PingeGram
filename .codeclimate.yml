@@ -1,0 +1,21 @@
+---
+engines:
+  brakeman:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+  eslint:
+    enabled: false
+  fixme:
+    enabled: false
+  rubocop:
+    enabled: true
+
+ratings:
+  paths:
+  - app/**
+  - lib/**
+  - '**.rb'
