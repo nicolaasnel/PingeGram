@@ -3,7 +3,7 @@ require 'net/http'
 class Telegram
   def send(chat_service, message)
     url = parse_url(chat_service.telegram_chat, message)
-    result = Net::HTTP.get(url)
+    Net::HTTP.get(url)
   end
 
   private

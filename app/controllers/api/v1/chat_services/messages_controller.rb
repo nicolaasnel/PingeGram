@@ -1,6 +1,6 @@
 class Api::V1::ChatServices::MessagesController < Api::V1::BaseController
   before_action :assign_chat_service
-  skip_before_filter :verify_authenticity_token, only: :create
+  skip_before_action :verify_authenticity_token, only: :create
 
   attr_accessor :chat_service
 
