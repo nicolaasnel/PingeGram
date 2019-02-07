@@ -5,6 +5,7 @@ class Service < ApplicationRecord
 
   enum types: {
     pingdom: 'Pingdom',
-    synology: 'Synology'
+    synology: 'Synology',
+    status_cake: 'StatusCake'
   }
 end
