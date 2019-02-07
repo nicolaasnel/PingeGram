@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.3.3
+  - 2.6.0
 
 cache:
   bundler: true
@@ -10,7 +10,7 @@ services:
   - redis-server
 
 addons:
-  postgresql: '9.4'
+  postgresql: '9.6'
   code_climate:
     repo_token: f100b0361948e77048cb6cd93dd3431a9f08e37f21815ee3738cd9380d6a54f2
 
