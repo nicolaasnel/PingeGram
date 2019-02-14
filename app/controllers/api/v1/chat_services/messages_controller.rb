@@ -35,7 +35,7 @@ class Api::V1::ChatServices::MessagesController < Api::V1::BaseController
     end
 
     def message_repeated?
-      @_repeated ||= ChatService.messages.order(:created_at).last&.text == message
+      @_repeated ||= chat_service.messages.order(:created_at).last&.text == message
     end
 
     def message
