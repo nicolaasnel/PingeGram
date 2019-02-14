@@ -49,6 +49,8 @@ ActiveAdmin.register_page "Dashboard" do
                 td content_tag(:strong, 'Service')
                 td content_tag(:strong, 'Date')
                 td content_tag(:strong, 'Message')
+                td content_tag(:strong, 'Sent')
+                td content_tag(:strong, 'Repeated')
                 td
               end
               current_user.messages.order(created_at: :desc).limit(10).each do |message|
@@ -57,6 +59,8 @@ ActiveAdmin.register_page "Dashboard" do
                   td message.chat_service.service.name
                   td message.created_at
                   td message.text
+                  td message.sent?     ? status_tag( "yes", :ok ) : status_tag( "no" )
+                  td message.repeated? ? status_tag( "yes", :ok ) : status_tag( "no" )
                   td do
                     link_to 'View', message_path(message), class: 'button'
                   end

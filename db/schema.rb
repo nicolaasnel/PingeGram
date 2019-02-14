@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_11_11_215735) do
+ActiveRecord::Schema.define(version: 2019_02_14_190054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 2017_11_11_215735) do
   create_table "chat_services", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "service_id"
     t.uuid "telegram_chat_id"
-    t.boolean "enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "do_not_repeat", default: false
   end
 
   create_table "messages", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2017_11_11_215735) do
     t.uuid "chat_service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "repeated", default: false
+    t.boolean "sent", default: false
   end
 
   create_table "services", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
