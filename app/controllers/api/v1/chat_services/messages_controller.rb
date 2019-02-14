@@ -22,12 +22,12 @@ class Api::V1::ChatServices::MessagesController < Api::V1::BaseController
         repeated: message_repeated?,
         sent: send_message?
       )
-      send_message unless send_message?
+      send_message if send_message?
       head :no_content
     end
 
     def send_message?
-      @_sent ||= message_repeated? && chat_service.do_not_repeat?
+      @_sent ||= !message_repeated? || !chat_service.do_not_repeat?
     end
 
     def send_message
