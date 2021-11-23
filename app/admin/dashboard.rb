@@ -59,8 +59,8 @@ ActiveAdmin.register_page "Dashboard" do
                   td message.chat_service.service.name
                   td message.created_at
                   td message.text
-                  td message.sent?
-                  td message.repeated?
+                  td (message.sent? ? status_tag( "yes", :ok ) : status_tag( "no" ))
+                  td (message.repeated? ? status_tag( "yes", :ok ) : status_tag( "no" ))
                   td do
                     link_to 'View', message_path(message), class: 'button'
                   end
